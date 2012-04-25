@@ -1,0 +1,20 @@
+{
+  "name": "inverter",
+  "description": "Simply translate LTR-based CSS file to RTL, or the opposite. Can be both used on the server-side with Node.js, or client-side.",
+  "version": "0.1.0",
+  "author": "Pierre Matri <pierre.matri@coolony.com>",
+  "contributors": [ 
+    { "name": "Pierre Matri", "email": "pierre.matri@coolony.com" }
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": ["inverter", "invert", "css", "ltr", "rtl", "i18n", "internationalization"],
+    "repository": "git://github.com/coolony/inverter",
+    "main": "index",
+  "scripts": {
+    "test": "make test"
+    },
+  "engines": { "node":">= 0.5.0 < 0.7.0" }
+}
