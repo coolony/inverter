@@ -3,7 +3,7 @@ module.exports = module.exports || {};
 
 var REGEXP_FLAGS = 'g'
   , TMP_TOKEN = '<TMP>'
-  , LOOKAHEAD_LETTER = '([A_Za-z])?'
+  , LOOKAHEAD_LETTER = '([A-Za-z])?'
   , LOOKAHEAD_OPENING_PAREN = '(\\([^\\(\\):]*)?'
   , LOOKAHEAD_LETTER_OR_OPENING_PAREN = '((?:\\([^\\(\\):]*)?(?:[A_Za-z])?)?'
   , LOOKAHEAD_NOT_WHITESPACE_OR_CLOSING_BRACE = '([^\\s\\}])?'
@@ -53,7 +53,16 @@ var REGEXP_FLAGS = 'g'
   , CURSOR_RE = new RegExp('cursor[\\s]*:[\\s]*(?:n|s)?((e|w)-resize)'
                              + LOOKBEHIND_NOT_CLOSING_PAREN
                              + LOOKBEHIND_NOT_OPENING_BRACE
-                           , REGEXP_FLAGS);
+                           , REGEXP_FLAGS)
+  , URL_BASE_RE = LOOKAHEAD_LETTER + 'url[\\s]*\\((?:(?:[^\\)]*[^A-Za-z0-9])|(?:[\\s]*))'
+  , URL_LTR_RTL_RE = new RegExp(URL_BASE_RE
+                                  + '(rtl|ltr)'
+                                  + '[^A-Za-z0-9]'
+                                , REGEXP_FLAGS)
+  , URL_LEFT_RIGHT_RE = new RegExp(URL_BASE_RE
+                                     + '(left|right)'
+                                     + '[^A-Za-z0-9]'
+                                   , REGEXP_FLAGS);
 
 // Fix array map
 if (!('map' in Array.prototype)) {
@@ -132,7 +141,28 @@ var rules = module.exports.rules = {
   // Fixes gradients
   fixGradient: function(str){
     return str.replace(GRADIENT_RE, fixGradient);
+  },
+  
+  // Fix LTR/RTL in URLs
+  fixUrlLtrRtl: function(str){
+    return str.replace(URL_LTR_RTL_RE, function(){
+      if(arguments[1]) return arguments[0];
+      return arguments[0].substr(0, arguments[0].length - 4)
+               + (arguments[2] == 'ltr' ? 'rtl' : 'ltr')
+               + arguments[0].slice(-1);
+    });
+  },
+  
+  // Fix left/right in URLs
+  fixUrlLeftRight: function(str){
+    return str.replace(URL_LEFT_RIGHT_RE, function(){
+      if(arguments[1]) return arguments[0];
+      return arguments[0].substr(0, arguments[0].length - arguments[2].length - 1)
+               + (arguments[2] == 'left' ? 'right' : 'left')
+               + arguments[0].slice(-1);
+    });
   }
+  
 }
 
 function invert(str, options){

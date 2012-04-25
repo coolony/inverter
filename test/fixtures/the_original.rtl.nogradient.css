@@ -1,7 +1,7 @@
 body { 
 	font: 12px Arial, Helvetica, sans-serif; 
 	color: #CCCCCC; 
-	background: #000000 url(background_right.jpg) no-repeat center bottom; 
+	background: #000000 url(background_left.jpg) no-repeat center bottom; 
 	margin: 0px; 
 	direction: rtl;
 	}
@@ -26,6 +26,7 @@ p {
 ul {
 	margin: 0px;
 	padding: 0px 0px 180px 100px;
+	background-image: url(ul.ltr.png) no-repeat top left;
 	clear: both;
 	}
 

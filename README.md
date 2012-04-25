@@ -1,7 +1,7 @@
 Inverter
 ========
 
-Simply translate LTR-based CSS file to RTL, or the opposite. Can be both used on the server-side with Node.js, or client-side.
+Simply flips LTR-based CSS file to RTL, or the opposite, in pure javascript. Can be both used on the server-side with Node.js, or client-side. This package has been inspired by Google's great [CSSJanus](http://code.google.com/p/cssjanus/).
 
 
 Basic Usage
@@ -36,6 +36,16 @@ Inverter will
 * **fixFourPartNotation**: Fixes four part notation, so, for example, `border: 1px 2px 3px 4px` will be rewritten to `border: 1px 4px 3px 2px`. As it can interfere with *fixBorderRadius*, `border-radius` is explicitely excluded from the scope of this fix
 
 * **fixGradient**: Fixes most common CSS gradient definitions. This fix will replace `left` with `right`, `XXXdeg` with `-XXXdeg` and the opposites inside gradients.
+
+* **fixUrlLeftRight**: Changes URLs containing a standalone `left` or `right`. For example, `url(menu-right.png)` will be changed to `url(menu-left.png)`, but `url(menu-bright.png)` will be left intact.
+
+* **fixUrlLtrRtl**: Same as *fixUrlLeftRight*, but for `ltr` and `rtl`.
+
+
+Todo
+----
+
+Add a fix for background images.
 
 
 Tests

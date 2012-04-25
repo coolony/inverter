@@ -26,6 +26,7 @@ p {
 ul {
 	margin: 0px;
 	padding: 0px 100px 180px 0px;
+	background-image: url(ul.rtl.png) no-repeat top right;
 	clear: both;
 	}
 

@@ -26,4 +26,8 @@ describe('inverter.rules.fixLeftRight', function() {
     inverter.rules.fixLeftRight('.foo{background:url("left.png")}').should.be.equal('.foo{background:url("left.png")}');
   });
   
+  it('should not interfere with gradients', function() {
+    inverter.rules.fixFourPartNotation('.test{background: -webkit-gradient(linear, left top, right bottom, color-stop(10%,#7db9e8), color-stop(22%,#207cca), color-stop(23%,#2989d8), color-stop(100%,#1e5799));}').should.be.equal('.test{background: -webkit-gradient(linear, left top, right bottom, color-stop(10%,#7db9e8), color-stop(22%,#207cca), color-stop(23%,#2989d8), color-stop(100%,#1e5799));}');
+  });
+  
 });
