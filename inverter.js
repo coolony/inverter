@@ -1,8 +1,12 @@
 var module = module || {};
 module.exports = module.exports || {};
 
+
+/*
+ * RegExps
+ */
+ 
 var REGEXP_FLAGS = 'g'
-  , TMP_TOKEN = '<TMP>'
   , LOOKAHEAD_LETTER = '([A-Za-z])?'
   , LOOKAHEAD_OPENING_PAREN = '(\\([^\\(\\):]*)?'
   , LOOKAHEAD_LETTER_OR_OPENING_PAREN = '((?:\\([^\\(\\):]*)?(?:[A_Za-z])?)?'
@@ -64,17 +68,11 @@ var REGEXP_FLAGS = 'g'
                                      + '[^A-Za-z0-9]'
                                    , REGEXP_FLAGS);
 
-// Fix array map
-if (!('map' in Array.prototype)) {
-  Array.prototype.map= function(mapper, that /*opt*/) {
-    var other= new Array(this.length);
-    for (var i= 0, n= this.length; i<n; i++)
-      if (i in this)
-        other[i]= mapper.call(that, this[i], i, this);
-    return other;
-  };
-}
 
+/*
+ * CSS transformation rules
+ */
+ 
 var rules = module.exports.rules = {
 
   // Change `direction: ltr` to `direction: rtl` and the opposite, only in body
@@ -165,6 +163,16 @@ var rules = module.exports.rules = {
   
 }
 
+
+/**
+ * Inverts a CSS string
+ *
+ * @param {String} str CSS string
+ * @param {Object} options (Optional)
+ * @return {String} Inverted CSS
+ * @api private
+ */
+ 
 function invert(str, options){
 
   if(!options) options = {};
@@ -184,6 +192,7 @@ function invert(str, options){
 
 }
 
+
 /**
  * Reorders border radius values for opposite direction
  * 
@@ -199,6 +208,7 @@ function invert(str, options){
  * @return {String} Result
  * @api private
  */
+ 
 function reorderBorderRadius(p1, p2, p3, p4){
   if(p4)
     return [p2, p1, p4, p3].join(' ');
@@ -210,6 +220,7 @@ function reorderBorderRadius(p1, p2, p3, p4){
     return p1;
 }
 
+
 /**
  * Fixes most gradient definitions
  *
@@ -220,6 +231,7 @@ function reorderBorderRadius(p1, p2, p3, p4){
  * fixGradient("background: linear-gradient(45deg, #000 0%, #fff 100%)")
  *   -> "linear-gradient(-45deg, #000 0%,#fff 100%)"
  */
+ 
 function fixGradient(str) {
   var ret = str.replace(GRADIENT_REPLACE_RE, function($0, $1, $2){
     return $1 ?
@@ -237,16 +249,6 @@ function fixGradient(str) {
   return ret;
 }
 
-/**
- * Removes whitespace at the beginning and the end of a string
- *
- * @param {String} str String to trim
- * @return {String} Trimmed string
- * @api private
- */
-function trim(str){
-  return str.replace(/^\s+/g,'').replace(/\s+$/g,'');
-}
 
 /**
  * Module exports
