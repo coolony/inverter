@@ -1,3 +1,9 @@
+/*!
+ * Coolony Inverter
+ * Copyright(c) 2011 Pierre Matri <pierre.matri@coolony.com>
+ * MIT Licensed
+ */
+ 
 var module = module || {};
 module.exports = module.exports || {};
 
