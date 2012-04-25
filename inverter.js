@@ -170,7 +170,7 @@ var rules = module.exports.rules = {
  * @param {String} str CSS string
  * @param {Object} options (Optional)
  * @return {String} Inverted CSS
- * @api private
+ * @api public
  */
  
 function invert(str, options){

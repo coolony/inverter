@@ -1,7 +1,7 @@
 Inverter
 ========
 
-Simply flips LTR-based CSS file to RTL, or the opposite, in pure javascript. Can be both used on the server-side with Node.js, or client-side. This package has been inspired by Google's great [CSSJanus](http://code.google.com/p/cssjanus/).
+Simply flips LTR-based CSS file to RTL, or the opposite, in pure javascript, using a bunch of regular expressions. Can be both used on the server-side with Node.js, or client-side. This package has been inspired by Google's great [CSSJanus](http://code.google.com/p/cssjanus/).
 
 
 Basic Usage
