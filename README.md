@@ -51,4 +51,4 @@ Add a fix for background images.
 Tests
 -----
 
-This package is tested using [Mocha](http://visionmedia.github.com/mocha/). To run the tests, run `npm install` inside the package directory to install development dependencies, and then simply `make test`.
+This package is tested using [Mocha](http://mochajs.org/). To run the tests, run `npm install` inside the package directory to install development dependencies, and then simply `make test`.
